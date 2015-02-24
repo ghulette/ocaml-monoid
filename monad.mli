@@ -1,5 +1,6 @@
 module type S = sig
   type 'a t
+  val fmap : ('a -> 'b) -> 'a t -> 'b t
   val return : 'a -> 'a t
   val ( >>= ) : 'a t -> ('a -> 'b t) -> 'b t
 end

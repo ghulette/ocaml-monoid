@@ -1,5 +1,6 @@
 SOURCES = base.ml \
           monoid.mli monoid.ml \
+	  functor.mli functor.ml \
           monad.mli monad.ml \
           option.ml \
           mylist.ml

@@ -1,8 +1,8 @@
 module type S = sig
-  type 'a t
-  val return : 'a -> 'a t
-  val (>>=) : 'a t -> ('a -> 'b t) -> 'b t
-end
+    include Functor.S
+    val return : 'a -> 'a t
+    val (>>=) : 'a t -> ('a -> 'b t) -> 'b t
+  end
 
 module Generic (M : S) = struct
   open M
@@ -14,21 +14,19 @@ module Generic (M : S) = struct
 
   let rec sequence = function
     | [] -> return []
-    | m::ms -> begin
-        m >>= fun x ->
-        sequence ms >>= fun xs ->
-        return (x::xs)
-      end
+    | m::ms ->
+       m >>= fun x ->
+       sequence ms >>= fun xs ->
+       return (x::xs)
 
   let map f xs = 
     sequence (List.map f xs)
 
   let rec fold f x = function
     | [] -> return x
-    | y::ys -> begin
-        f x y >>= fun x' ->
-        fold f x' ys
-      end
+    | y::ys ->
+       f x y >>= fun x' ->
+       fold f x' ys
 end
 
 module LeftMonoid (M : S) (O : Monoid.S) = struct
