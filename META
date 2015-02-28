@@ -1,0 +1,6 @@
+name="ocaml-monoid"
+description="Monoid types and functors"
+version="0.1"
+requires=""
+archive(byte)="monoid.cma"
+archive(native)="monoid.cmxa"
