@@ -1,11 +1,8 @@
 ocaml-monoid
 ============
 
-Description
------------
-
-Replicating Haskell's monoid typeclass as a set of OCaml modules and
-functors.
+Replicating a small but useful subset of Haskell's monoid typeclass as
+a set of OCaml modules and functors.
 
 
 Installation
