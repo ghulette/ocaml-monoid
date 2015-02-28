@@ -4,7 +4,7 @@ module type S = sig
   val ( <+> ) : t -> t -> t
 end
 
-module Generic (M : S) : sig 
+module Make (M : S) : sig 
   val concat : M.t list -> M.t
 end
 
@@ -14,3 +14,8 @@ module Any : S with type t = bool
 module All : S with type t = bool
 module Pair (M1 : S) (M2 : S) : S with type t = M1.t * M2.t
 module Dual (M : S) : S with type t = M.t
+module Endo (F : sig type t end) : S with type t = F.t -> F.t
+module Option (M : S) : S with type t = M.t option
+module First (T : sig type t end) : S with type t = T.t option
+module Last (T : sig type t end) : S with type t = T.t option
+module List (T : sig type t end) : S with type t = T.t list
