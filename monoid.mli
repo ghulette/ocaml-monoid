@@ -5,7 +5,8 @@ module type S = sig
 end
 
 module Make (M : S) : sig 
-  val concat : M.t list -> M.t
+  val fold : M.t list -> M.t
+  val fold_opt : (M.t -> M.t -> 'a) -> M.t list -> M.t
 end
 
 module Sum : S with type t = int

@@ -5,8 +5,11 @@ module type S = sig
 end
 
 module Make (M : S) = struct
-  let concat ms = 
-    M.(List.fold_right (<+>) ms empty)
+  let fold ms = 
+    M.(List.fold_left (<+>) empty ms)
+
+  let fold_opt cf ms =
+    failwith "not implemented"
 end
 
 module Sum = struct
