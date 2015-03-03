@@ -7,9 +7,6 @@ end
 module Make (M : S) = struct
   let fold ms = 
     M.(List.fold_left (<+>) empty ms)
-
-  let fold_opt cf ms =
-    failwith "not implemented"
 end
 
 module Sum = struct
